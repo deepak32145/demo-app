@@ -1,0 +1,76 @@
+<div class="container-fluid document-upload-container">
+  <div class="row">
+    <div class="col-md-3 green-section">
+      <mat-stepper orientation="vertical" class="stepper-nav">
+        <ng-container *ngFor="let step of steps">
+          <mat-step [completed]="step.completed">
+            <ng-template matStepLabel>
+              <span [class.text-white]="true" [class.active-step]="step.active">
+                {{step.label}}
+              </span>
+            </ng-template>
+          </mat-step>
+        </ng-container>
+      </mat-stepper>
+
+      <div class="footer-links">
+        <a href="#" class="text-white">Privacy</a> |
+        <a href="#" class="text-white">Security</a>
+      </div>
+    </div>
+
+    <div class="col-md-9 white-section">
+      <div class="content-wrapper">
+        <h1 class="text-success mb-4">Upload Documents</h1>
+        <p class="mb-4">In order to complete the review, we will need the items below. Please provide them as soon as possible.</p>
+
+        <mat-card class="document-list">
+          <mat-card-content>
+            <div class="document-table">
+              <div class="table-header">
+                <div class="col-type">Document Type</div>
+                <div class="col-upload">Upload</div>
+                <div class="col-uploaded">Documents already uploaded:</div>
+                <div class="col-notes">Notes from Bank</div>
+              </div>
+
+              <div class="table-body">
+                <div class="table-row" *ngFor="let doc of documentTypes">
+                  <div class="col-type">{{doc.name}}</div>
+                  <div class="col-upload">
+                    <button mat-icon-button color="primary" (click)="onUpload(doc)" matTooltip="Upload Document">
+                      <mat-icon>upload</mat-icon>
+                    </button>
+                  </div>
+                  <div class="col-uploaded">
+                    <ng-container *ngIf="doc.uploadedFiles?.length">
+                      <div *ngFor="let file of doc.uploadedFiles" class="uploaded-file">
+                        <mat-icon [class.text-success]="doc.status === 'success'"
+                                [class.text-danger]="doc.status === 'error'">
+                          picture_as_pdf
+                        </mat-icon>
+                        <a href="#" class="file-link">{{file}}</a>
+                      </div>
+                    </ng-container>
+                  </div>
+                  <div class="col-notes">
+                    <span class="text-danger" *ngIf="doc.notes">{{doc.notes}}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </mat-card-content>
+        </mat-card>
+
+        <div class="action-buttons">
+          <button mat-button color="primary" (click)="onBack()">
+            Back to Dashboard
+          </button>
+          <button mat-raised-button color="warn" (click)="onFinish()">
+            Finish
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

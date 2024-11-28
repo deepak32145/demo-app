@@ -1,0 +1,99 @@
+.offer-container {
+  min-height: 100vh;
+  padding: 0;
+}
+
+.green-section {
+  background-color: var(--primary-color);
+  min-height: 100vh;
+  padding: 2rem;
+}
+
+.white-section {
+  background-color: var(--white-color);
+  min-height: 100vh;
+  padding: 2rem;
+}
+
+.content-wrapper {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.offer-cards mat-card {
+  margin-bottom: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.offer-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.offer-header h3 {
+  color: var(--primary-color);
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.amount {
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+.offer-details {
+  margin-bottom: 1.5rem;
+}
+
+.detail-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.detail-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  color: var(--gray-color);
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+.value {
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.offer-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.back-button {
+  color: var(--gray-color);
+  margin-top: 2rem;
+}
+
+::ng-deep .mat-vertical-stepper-header {
+  padding: 24px 24px !important;
+}
+
+::ng-deep .mat-vertical-content-container {
+  margin-left: 24px !important;
+}
+
+::ng-deep .mat-step-icon {
+  background-color: white !important;
+  color: var(--primary-color) !important;
+}
+
+::ng-deep .mat-step-icon-selected {
+  background-color: white !important;
+  color: var(--primary-color) !important;
+}

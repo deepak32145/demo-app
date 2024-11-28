@@ -1,0 +1,109 @@
+.document-upload-container {
+  min-height: 100vh;
+  padding: 0;
+}
+
+.green-section {
+  background-color: var(--primary-color);
+  min-height: 100vh;
+  padding: 2rem;
+  position: relative;
+}
+
+.white-section {
+  background-color: var(--white-color);
+  min-height: 100vh;
+  padding: 2rem;
+}
+
+.content-wrapper {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.stepper-nav {
+  background-color: transparent;
+}
+
+.footer-links {
+  position: absolute;
+  bottom: 2rem;
+  left: 2rem;
+}
+
+.footer-links a {
+  color: white;
+  text-decoration: none;
+  margin: 0 0.5rem;
+}
+
+.document-list {
+  margin-bottom: 2rem;
+}
+
+.document-table {
+  width: 100%;
+}
+
+.table-header {
+  display: grid;
+  grid-template-columns: 2fr 80px 2fr 1fr;
+  gap: 1rem;
+  padding: 1rem;
+  background-color: #f5f5f5;
+  font-weight: 500;
+  border-radius: 4px;
+}
+
+.table-body .table-row {
+  display: grid;
+  grid-template-columns: 2fr 80px 2fr 1fr;
+  gap: 1rem;
+  padding: 1rem;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+}
+
+.uploaded-file {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.file-link {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+.action-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+}
+
+.text-danger {
+  color: #dc3545;
+}
+
+.text-success {
+  color: #28a745;
+}
+
+::ng-deep .mat-vertical-stepper-header {
+  padding: 24px 24px !important;
+}
+
+::ng-deep .mat-vertical-content-container {
+  margin-left: 24px !important;
+}
+
+::ng-deep .mat-step-icon {
+  background-color: white !important;
+  color: var(--primary-color) !important;
+}
+
+::ng-deep .mat-step-icon-selected {
+  background-color: white !important;
+  color: var(--primary-color) !important;
+}

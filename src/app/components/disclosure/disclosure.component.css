@@ -1,0 +1,103 @@
+.disclosure-container {
+  min-height: 100vh;
+  padding: 0;
+}
+
+.green-section {
+  background-color: var(--primary-color);
+  min-height: 100vh;
+  padding: 2rem;
+  position: relative;
+}
+
+.white-section {
+  background-color: var(--white-color);
+  min-height: 100vh;
+  padding: 2rem;
+}
+
+.content-wrapper {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.stepper-nav {
+  background-color: transparent;
+}
+
+.active-step {
+  color: white;
+  font-weight: 500;
+}
+
+.footer-links {
+  position: absolute;
+  bottom: 2rem;
+  left: 2rem;
+}
+
+.footer-links a {
+  color: white;
+  text-decoration: none;
+  margin: 0 0.5rem;
+}
+
+.disclosure-sections {
+  margin-bottom: 2rem;
+}
+
+.disclosure-content {
+  margin: 1rem 0;
+  color: var(--gray-color);
+}
+
+.disclosure-list {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+}
+
+.disclosure-list li {
+  margin-bottom: 0.5rem;
+}
+
+.disclosure-list a {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.action-footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+}
+
+.i-agree-checkbox {
+  background-color: #f8f8f8;
+  padding: 0.5rem;
+  border-radius: 4px;
+}
+
+::ng-deep .mat-vertical-stepper-header {
+  padding: 24px 24px !important;
+}
+
+::ng-deep .mat-vertical-content-container {
+  margin-left: 24px !important;
+}
+
+::ng-deep .mat-step-icon {
+  background-color: white !important;
+  color: var(--primary-color) !important;
+}
+
+::ng-deep .mat-step-icon-selected {
+  background-color: white !important;
+  color: var(--primary-color) !important;
+}

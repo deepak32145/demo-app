@@ -1,0 +1,76 @@
+.document-viewer {
+  padding: 1.5rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+}
+
+.document-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #eee;
+}
+
+.document-header h2 {
+  margin: 0;
+  color: var(--primary-color);
+}
+
+.document-content {
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  margin: 1rem 0;
+}
+
+.document-preview {
+  flex: 1;
+  overflow-y: auto;
+  background-color: #f8f8f8;
+  border-radius: 4px;
+  padding: 1rem;
+}
+
+.preview-image {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.page-navigation {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  gap: 1rem;
+  background-color: #f8f8f8;
+  border-radius: 0 0 4px 4px;
+}
+
+.document-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 1rem;
+  border-top: 1px solid #eee;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+.document-text {
+  white-space: pre-wrap;
+  line-height: 1.6;
+}
+
+:host ::ng-deep .mat-dialog-container {
+  padding: 0;
+  overflow: hidden;
+  border-radius: 8px;
+}

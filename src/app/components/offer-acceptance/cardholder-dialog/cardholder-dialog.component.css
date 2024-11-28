@@ -1,0 +1,51 @@
+.cardholder-dialog {
+  padding: 24px;
+}
+
+.dialog-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.instruction-text {
+  color: var(--gray-color);
+  margin-bottom: 24px;
+}
+
+.cardholders-table {
+  margin-bottom: 24px;
+}
+
+.table-header {
+  display: grid;
+  grid-template-columns: 80px 1fr 1fr 120px 150px 100px 100px 50px;
+  gap: 16px;
+  padding: 8px;
+  background-color: #f5f5f5;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+.table-body .table-row {
+  display: grid;
+  grid-template-columns: 80px 1fr 1fr 120px 150px 100px 100px 50px;
+  gap: 16px;
+  padding: 8px;
+  align-items: center;
+}
+
+.table-body .mat-form-field {
+  width: 100%;
+}
+
+.dialog-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 24px;
+}
+
+::ng-deep .mat-form-field-wrapper {
+  margin-bottom: -1.25em;
+}

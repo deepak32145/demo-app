@@ -1,0 +1,62 @@
+<div class="container-fluid dashboard-container">
+  <div class="row">
+    <div class="col-md-3 green-section">
+      <div class="dashboard-icon">
+        <img src="assets/dashboard-icon.svg" alt="Dashboard Icon">
+        <h2 class="text-white mt-3">Dashboard</h2>
+      </div>
+    </div>
+    <div class="col-md-9 white-section">
+      <div class="content-wrapper">
+        <h1 class="text-success mb-4">Thank you for considering Citizens Bank for your lending needs.</h1>
+        <p class="mb-4">An application was recently completed for financing for your business.</p>
+
+        <mat-card class="details-card mb-4">
+          <mat-card-content>
+            <h2 class="section-title mb-4">Application Details</h2>
+            <div class="details-grid">
+              <div class="detail-item">
+                <span class="label">Application Number</span>
+                <span class="value">{{applicantDetails.applicationNumber}}</span>
+              </div>
+              <div class="detail-item">
+                <span class="label">Borrower Name</span>
+                <span class="value">{{applicantDetails.borrowerName}}</span>
+              </div>
+              <div class="detail-item">
+                <span class="label">Product(s) Requested</span>
+                <span class="value">{{applicantDetails.productRequested}}</span>
+              </div>
+              <div class="detail-item">
+                <span class="label">Amount Requested</span>
+                <span class="value">{{applicantDetails.amountRequested}}</span>
+              </div>
+            </div>
+          </mat-card-content>
+        </mat-card>
+
+        <mat-card class="next-steps-card mb-4">
+          <mat-card-content>
+            <h2 class="section-title mb-4">Next Steps</h2>
+            <p class="mb-4">In order to proceed, we will need you to complete the following. Please click on each item to complete the action required.</p>
+            
+            <div class="action-buttons">
+              <button mat-raised-button color="warn" 
+                      *ngFor="let step of applicantDetails.nextSteps"
+                      (click)="navigateToStep(step)"
+                      [disabled]="isStepDisabled(step)"
+                      [class.completed-step]="getStepIcon(step) === 'check_circle'">
+                {{step}}
+                <mat-icon>{{getStepIcon(step)}}</mat-icon>
+              </button>
+            </div>
+          </mat-card-content>
+        </mat-card>
+
+        <button mat-button class="back-button" (click)="onBack()">
+          Back
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

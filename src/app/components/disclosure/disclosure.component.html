@@ -1,0 +1,86 @@
+<div class="container-fluid disclosure-container">
+  <div class="row">
+    <div class="col-md-3 green-section">
+      <mat-stepper orientation="vertical" class="stepper-nav">
+        <ng-container *ngFor="let step of steps">
+          <mat-step [completed]="step.completed">
+            <ng-template matStepLabel>
+              <span [class.active-step]="step.active">{{step.label}}</span>
+            </ng-template>
+          </mat-step>
+        </ng-container>
+      </mat-stepper>
+      
+      <div class="footer-links">
+        <a href="#" class="text-white">Privacy</a> |
+        <a href="#" class="text-white">Security</a>
+      </div>
+    </div>
+
+    <div class="col-md-9 white-section">
+      <div class="content-wrapper">
+        <h1 class="text-success mb-4">Please review these disclosures.</h1>
+
+        <div class="disclosure-sections">
+          <!-- First Disclosure -->
+          <mat-card class="mb-4">
+            <mat-card-content>
+              <div class="d-flex justify-content-between align-items-start">
+                <h2>1. {{disclosures[0].title}}</h2>
+                <mat-checkbox 
+                  [(ngModel)]="disclosures[0].agreed"
+                  color="primary"
+                  class="i-agree-checkbox">
+                  I agree
+                </mat-checkbox>
+              </div>
+              
+              <p class="disclosure-content">{{disclosures[0].content}}</p>
+              
+              <div class="action-buttons">
+                <button mat-stroked-button color="primary" (click)="openDocument(disclosures[0].title)">
+                  <mat-icon>print</mat-icon> Print
+                </button>
+                <button mat-stroked-button color="primary">
+                  <mat-icon>save</mat-icon> Save
+                </button>
+              </div>
+            </mat-card-content>
+          </mat-card>
+
+          <!-- Other Disclosures -->
+          <mat-card>
+            <mat-card-content>
+              <div class="d-flex justify-content-between align-items-start">
+                <h2>2. {{disclosures[1].title}}</h2>
+                <mat-checkbox 
+                  [(ngModel)]="disclosures[1].agreed"
+                  color="primary"
+                  class="i-agree-checkbox">
+                  I agree
+                </mat-checkbox>
+              </div>
+              
+              <ul class="disclosure-list">
+                <li *ngFor="let item of disclosures[1].subItems">
+                  <a href="#" (click)="openDocument(item); $event.preventDefault()">{{item}}</a>
+                </li>
+              </ul>
+            </mat-card-content>
+          </mat-card>
+        </div>
+
+        <div class="action-footer">
+          <button mat-button color="primary" (click)="onBack()">
+            Back to Dashboard
+          </button>
+          <button mat-raised-button color="warn" 
+                  [disabled]="!canProceed()"
+                  (click)="onFinish()">
+            Finish
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

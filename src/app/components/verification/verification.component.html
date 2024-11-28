@@ -1,0 +1,41 @@
+<div class="container-fluid verification-container">
+  <div class="row">
+    <div class="col-md-6 green-section">
+      <mat-card class="welcome-card">
+        <mat-card-content>
+          <h1 class="text-white">Welcome!</h1>
+          <p class="text-white">
+            We need to verify you in order to protect your personal information.
+          </p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div class="col-md-6 white-section">
+      <mat-card class="verification-card">
+        <mat-card-content>
+          <h2 class="text-success mb-4">Let us verify you</h2>
+          <p>
+            In order for us to verify you, we will be sending an OTP to your email
+          </p>
+          <p class="mb-4">
+            In the following screen, you will be requested to enter the OTP and the last 4
+            Digits of your SSN.
+          </p>
+          <p class="mb-4">
+            Please click the button below to start verification
+          </p>
+          <div class="text-center">
+            <button mat-raised-button color="warn" class="verify-button" (click)="onVerifyClick()">
+              Verify
+            </button>
+          </div>
+          <div class="mt-4">
+            <button mat-button color="primary" class="back-button">
+              Back
+            </button>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

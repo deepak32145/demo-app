@@ -1,0 +1,73 @@
+<div class="cardholder-dialog">
+  <div class="dialog-header">
+    <h2 class="text-success">Additional Information of Cardholders</h2>
+    <button mat-icon-button (click)="dialogRef.close()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+
+  <p class="instruction-text">
+    In order to finalize your credit card account, we need additional information regarding cardholders.
+  </p>
+
+  <div class="cardholders-table">
+    <div class="table-header">
+      <div class="col-enable">Enable</div>
+      <div class="col-name">First Name</div>
+      <div class="col-name">Last Name</div>
+      <div class="col-ssn">SSN Last 4Digit</div>
+      <div class="col-mobile">Mobile Number</div>
+      <div class="col-checkbox">Cash Access</div>
+      <div class="col-checkbox">FedEx Cards</div>
+      <div class="col-action"></div>
+    </div>
+
+    <div class="table-body">
+      <div class="table-row" *ngFor="let cardholder of cardholders; let i = index">
+        <div class="col-enable">
+          <mat-checkbox [(ngModel)]="cardholder.enabled" color="primary"></mat-checkbox>
+        </div>
+        <div class="col-name">
+          <mat-form-field appearance="outline">
+            <input matInput [(ngModel)]="cardholder.firstName">
+          </mat-form-field>
+        </div>
+        <div class="col-name">
+          <mat-form-field appearance="outline">
+            <input matInput [(ngModel)]="cardholder.lastName">
+          </mat-form-field>
+        </div>
+        <div class="col-ssn">
+          <mat-form-field appearance="outline">
+            <input matInput [(ngModel)]="cardholder.ssnLastFour" maxlength="4">
+          </mat-form-field>
+        </div>
+        <div class="col-mobile">
+          <mat-form-field appearance="outline">
+            <input matInput [(ngModel)]="cardholder.mobileNumber">
+          </mat-form-field>
+        </div>
+        <div class="col-checkbox">
+          <mat-checkbox [(ngModel)]="cardholder.cashAccess" color="primary"></mat-checkbox>
+        </div>
+        <div class="col-checkbox">
+          <mat-checkbox [(ngModel)]="cardholder.fedexCards" color="primary"></mat-checkbox>
+        </div>
+        <div class="col-action">
+          <button mat-icon-button color="warn" (click)="removeCardholder(i)" *ngIf="i > 1">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="dialog-actions">
+    <button mat-stroked-button color="primary" (click)="addNewCardholder()">
+      + Add New
+    </button>
+    <button mat-raised-button color="warn" (click)="onFinish()">
+      Finish
+    </button>
+  </div>
+</div>

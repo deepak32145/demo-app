@@ -1,0 +1,74 @@
+<div class="container-fluid offer-container">
+  <div class="row">
+    <div class="col-md-3 green-section">
+      <mat-stepper orientation="vertical" class="stepper-nav">
+        <mat-step completed>
+          <ng-template matStepLabel>
+            <span class="text-white">Disclosures</span>
+          </ng-template>
+        </mat-step>
+        <mat-step selected>
+          <ng-template matStepLabel>
+            <span class="text-white">Offer Acceptance</span>
+          </ng-template>
+        </mat-step>
+        <mat-step>
+          <ng-template matStepLabel>
+            <span class="text-white">Document Upload</span>
+          </ng-template>
+        </mat-step>
+      </mat-stepper>
+    </div>
+
+    <div class="col-md-9 white-section">
+      <div class="content-wrapper">
+        <h1 class="text-success mb-4">We are pleased to provide you with the offer(s) outlined below.</h1>
+
+        <div class="offers-section">
+          <h2 class="text-success mb-4">Your Offers</h2>
+
+          <div class="offer-cards">
+            <mat-card *ngFor="let offer of offers" class="mb-4">
+              <mat-card-content>
+                <div class="offer-header">
+                  <h3>{{offer.type}}</h3>
+                  <span class="amount">Amount: {{offer.amount}}</span>
+                </div>
+
+                <div class="offer-details">
+                  <div class="detail-row">
+                    <div class="detail-item">
+                      <span class="label">Interest Rate</span>
+                      <span class="value">{{offer.interestRate}}</span>
+                    </div>
+                    <div class="detail-item">
+                      <span class="label">Annual Fee*</span>
+                      <span class="value">{{offer.annualFee}}</span>
+                    </div>
+                    <div class="detail-item">
+                      <span class="label">{{offer.term ? 'Term' : 'Origination Fee'}}</span>
+                      <span class="value">{{offer.term || offer.originationFee}}</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="offer-actions">
+                  <button mat-raised-button color="warn" (click)="onApprove(offer)">
+                    Approve
+                  </button>
+                  <button mat-stroked-button (click)="onDecline(offer)">
+                    Decline
+                  </button>
+                </div>
+              </mat-card-content>
+            </mat-card>
+          </div>
+        </div>
+
+        <button mat-button class="back-button" (click)="onBack()">
+          Back to Dashboard
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

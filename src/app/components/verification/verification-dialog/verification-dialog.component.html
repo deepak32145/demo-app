@@ -1,0 +1,62 @@
+<div class="verification-dialog">
+  <h2 class="text-success">Verify Details</h2>
+  <p class="instruction-text">
+    Please enter the one-time passcode sent to the Email Address and last 4
+    digits of your SSN.
+  </p>
+
+  <form [formGroup]="verificationForm" (ngSubmit)="onSubmit()">
+    <div class="form-fields">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Passcode</mat-label>
+        <input
+          matInput
+          formControlName="passcode"
+          type="text"
+          placeholder="Enter passcode"
+        />
+        <mat-error
+          *ngIf="verificationForm.get('passcode')?.errors?.['required']"
+        >
+          Passcode is required
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>SSN (Last 4 Digit)</mat-label>
+        <input
+          matInput
+          formControlName="ssnLastFour"
+          type="password"
+          placeholder="Enter last 4 digits of SSN"
+        />
+        <mat-error
+          *ngIf="verificationForm.get('ssnLastFour')?.errors?.['required']"
+        >
+          SSN last 4 digits are required
+        </mat-error>
+        <mat-error
+          *ngIf="verificationForm.get('ssnLastFour')?.errors?.['pattern']"
+        >
+          Please enter valid 4 digits
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <button
+      mat-flat-button
+      color="warn"
+      class="submit-button full-width"
+      type="submit"
+    >
+      Submit
+    </button>
+
+    <div class="resend-section">
+      <span>Didn't receive code? </span>
+      <button mat-button color="primary" type="button" (click)="onResend()">
+        Resend
+      </button>
+    </div>
+  </form>
+</div>
