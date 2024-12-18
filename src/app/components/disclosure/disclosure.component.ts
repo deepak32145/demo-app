@@ -1,18 +1,19 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { MatStepperModule } from '@angular/material/stepper';
-import { MatCardModule } from '@angular/material/card';
-import { MatButtonModule } from '@angular/material/button';
-import { MatCheckboxModule } from '@angular/material/checkbox';
-import { MatIconModule } from '@angular/material/icon';
-import { MatDialogModule, MatDialog } from '@angular/material/dialog';
-import { FormsModule } from '@angular/forms';
-import { DocumentViewerComponent } from './document-viewer/document-viewer.component';
-import { Router } from '@angular/router';
-import { ApplicationStateService } from '../../shared/services/application-state.service';
+import { Component, OnInit } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { MatStepperModule } from "@angular/material/stepper";
+import { MatCardModule } from "@angular/material/card";
+import { MatButtonModule } from "@angular/material/button";
+import { MatCheckboxModule } from "@angular/material/checkbox";
+import { MatIconModule } from "@angular/material/icon";
+import { MatDialogModule, MatDialog } from "@angular/material/dialog";
+import { FormsModule } from "@angular/forms";
+import { DocumentViewerComponent } from "./document-viewer/document-viewer.component";
+import { Router } from "@angular/router";
+import { ApplicationStateService } from "../../shared/services/application-state.service";
+import { DataSharingService } from "../../service/data-sharing.service";
 
 @Component({
-  selector: 'app-disclosure',
+  selector: "app-disclosure",
   standalone: true,
   imports: [
     CommonModule,
@@ -22,57 +23,60 @@ import { ApplicationStateService } from '../../shared/services/application-state
     MatCheckboxModule,
     MatIconModule,
     MatDialogModule,
-    FormsModule
+    FormsModule,
   ],
-  templateUrl: './disclosure.component.html',
-  styleUrls: ['./disclosure.component.css']
+  templateUrl: "./disclosure.component.html",
+  styleUrls: ["./disclosure.component.css"],
 })
-export class DisclosureComponent {
+export class DisclosureComponent implements OnInit {
   steps = [
-    { label: 'Disclosures', completed: false, active: true },
-    { label: 'Offer Acceptance', completed: false, active: false },
-    { label: 'Document Upload', completed: false, active: false }
+    { label: "Disclosures", completed: false, active: true },
+    { label: "Offer Acceptance", completed: false, active: false },
+    { label: "Document Upload", completed: false, active: false },
   ];
 
   disclosures = [
     {
-      title: 'Consumer Credit Report Access Authorization',
+      title: "Consumer Credit Report Access Authorization",
       content: `As used herein, the term "you" refers to the business loan/credit applicant (the "Applicant"), regardless of whether the Applicant is submitting the application on their own behalf or whether an agent of the Applicant is submitting the application on the Applicant's behalf...`,
       agreed: false,
-      type: 'disclosure'
+      type: "disclosure",
     },
     {
-      title: 'Other Disclosures',
+      title: "Other Disclosures",
       subItems: [
-        'Beneficial Ownership Attestation Form',
-        'Authorization For The Social Security Administration To Disclose Your Social Security Number Verification',
-        'Business Credit Application Acknowledgement And Agreements',
-        'E-Sign Consents'
+        "Beneficial Ownership Attestation Form",
+        "Authorization For The Social Security Administration To Disclose Your Social Security Number Verification",
+        "Business Credit Application Acknowledgement And Agreements",
+        "E-Sign Consents",
       ],
       agreed: false,
-      type: 'other'
-    }
+      type: "other",
+    },
   ];
 
   constructor(
-    private dialog: MatDialog, 
+    private dialog: MatDialog,
     private router: Router,
-    private applicationState: ApplicationStateService
+    private applicationState: ApplicationStateService,
+    private dataSharingService: DataSharingService
   ) {}
 
-  openDocument(document: string, type: 'disclosure' | 'other' = 'other'): void {
+  openDocument(document: string, type: "disclosure" | "other" = "other"): void {
     const dialogRef = this.dialog.open(DocumentViewerComponent, {
-      width: '80%',
-      height: '80%',
+      width: "80%",
+      height: "80%",
       data: { title: document, type },
-      panelClass: 'document-viewer-dialog'
+      panelClass: "document-viewer-dialog",
     });
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         // Handle agreement
-        const disclosure = this.disclosures.find(d => 
-          d.title === document || (d.subItems && d.subItems.includes(document))
+        const disclosure = this.disclosures.find(
+          (d) =>
+            d.title === document ||
+            (d.subItems && d.subItems.includes(document))
         );
         if (disclosure) {
           disclosure.agreed = true;
@@ -82,20 +86,27 @@ export class DisclosureComponent {
   }
 
   onBack(): void {
-    this.router.navigate(['/dashboard']);
+    this.router.navigate(["/dashboard"]);
+  }
+  ngOnInit(): void {
+    this.dataSharingService.data$.subscribe((data) => {
+      if (data) {
+        this.disclosures = data.disclosures;
+      }
+    });
   }
 
   canProceed(): boolean {
-    return this.disclosures.every(d => d.agreed);
+    return this.disclosures.every((d) => d.agreed);
   }
 
   onFinish(): void {
     if (this.canProceed()) {
       this.applicationState.updateDisclosureStatus({
         completed: true,
-        disabled: true
+        disabled: true,
       });
-      this.router.navigate(['/dashboard']);
+      this.router.navigate(["/dashboard"]);
     }
   }
 }

@@ -1,0 +1,127 @@
+<div class="container">
+  <h2>Demographic Information for Users</h2>
+
+  <form [formGroup]="parentForm" (ngSubmit)="onSubmit()">
+    <!-- Loop through users -->
+    <div
+      *ngFor="let user of users; let userIndex = index"
+      class="user-form-section"
+    >
+      <h3>{{ user.name }}</h3>
+
+      <!-- User-specific form -->
+      <div [formGroup]="usersFormArray.at(userIndex)">
+        <!-- Ethnicity Question -->
+        <div>
+          <label
+            ><strong>1. {{ questions[0].label }}</strong></label
+          ><br />
+          <div *ngFor="let option of questions[0].options">
+            <label>
+              <input
+                type="radio"
+                [value]="option.name"
+                formControlName="ethnicity"
+                (change)="onOptionSelected(userIndex, 'ethnicity', option.name)"
+              />
+              {{ option.name }}
+            </label>
+          </div>
+
+          <!-- Ethnicity Sub-options -->
+          <div
+            *ngIf="
+              usersFormArray.at(userIndex).value.ethnicity ===
+              'Hispanic or Latino'
+            "
+          >
+            <div
+              *ngFor="let subOption of questions[0].subOptions; let i = index"
+            >
+              <label>
+                <input type="checkbox" [formControlName]="i" />
+                {{ subOption }}
+              </label>
+            </div>
+            <label>
+              Other Hispanic or Latino:
+              <input
+                type="text"
+                formControlName="otherEthnicity"
+                placeholder="Specify origin"
+              />
+            </label>
+          </div>
+        </div>
+
+        <!-- Continent Question -->
+        <div>
+          <label
+            ><strong>2. {{ questions[2].label }}</strong></label
+          ><br />
+          <div *ngFor="let option of questions[2].options">
+            <label>
+              <input
+                type="radio"
+                [value]="option.name"
+                formControlName="continent"
+                (change)="onOptionSelected(userIndex, 'continent', option.name)"
+              />
+              {{ option.name }}
+            </label>
+          </div>
+
+          <!-- Continent Sub-options -->
+          <div *ngIf="usersFormArray.at(userIndex).value.continent">
+            <div
+              *ngFor="
+                let subOption of questions[2].subOptions[
+                  usersFormArray.at(userIndex).value.continent
+                ];
+                let i = index
+              "
+            >
+              <label>
+                <input type="checkbox" [formControlName]="i" />
+                {{ subOption }}
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Gender Question -->
+        <div>
+          <label
+            ><strong>3. {{ questions[1].label }}</strong></label
+          ><br />
+          <div *ngFor="let option of questions[1].options">
+            <label>
+              <input
+                type="radio"
+                [value]="option.name"
+                formControlName="gender"
+              />
+              {{ option.name }}
+            </label>
+          </div>
+          <div
+            *ngIf="
+              usersFormArray.at(userIndex).value.gender ===
+              'Please specify your Sex/Gender'
+            "
+          >
+            <input
+              type="text"
+              formControlName="genderInput"
+              placeholder="Specify your gender"
+            />
+          </div>
+        </div>
+      </div>
+      <hr />
+    </div>
+
+    <!-- Submit Button -->
+    <button type="submit">Submit</button>
+  </form>
+</div>

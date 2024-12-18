@@ -1,32 +1,37 @@
-import { Routes } from '@angular/router';
-import { VerificationComponent } from './components/verification/verification.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { DisclosureComponent } from './components/disclosure/disclosure.component';
-import { OfferAcceptanceComponent } from './components/offer-acceptance/offer-acceptance.component';
-import { DocumentUploadComponent } from './components/document-upload/document-upload.component';
-import { AuthGuard } from './shared/guards/auth.guard';
+import { Routes } from "@angular/router";
+import { VerificationComponent } from "./components/verification/verification.component";
+import { DashboardComponent } from "./components/dashboard/dashboard.component";
+import { DisclosureComponent } from "./components/disclosure/disclosure.component";
+import { OfferAcceptanceComponent } from "./components/offer-acceptance/offer-acceptance.component";
+import { DocumentUploadComponent } from "./components/document-upload/document-upload.component";
+import { AuthGuard } from "./shared/guards/auth.guard";
+import { DemographicComponent } from "./components/demographic/demographic.component";
 
 export const routes: Routes = [
-  { path: '', redirectTo: 'verify', pathMatch: 'full' },
-  { path: 'verify', component: VerificationComponent },
-  { 
-    path: 'dashboard', 
+  { path: "", redirectTo: "verify", pathMatch: "full" },
+  { path: "verify", component: VerificationComponent },
+  {
+    path: "dashboard",
     component: DashboardComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
   },
-  { 
-    path: 'disclosures', 
+  {
+    path: "disclosures",
     component: DisclosureComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
   },
-  { 
-    path: 'offer-acceptance', 
+  {
+    path: "offer-acceptance",
     component: OfferAcceptanceComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
   },
-  { 
-    path: 'document-upload', 
+  {
+    path: "document-upload",
     component: DocumentUploadComponent,
-    canActivate: [AuthGuard]
-  }
+    canActivate: [AuthGuard],
+  },
+  {
+    path: "demographics",
+    component: DemographicComponent,
+  },
 ];
